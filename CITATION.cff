@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Saxon CMD Docker Image"
+abstract: "A lightweight Docker image for executing XSLT transformations and XQuery scripts using Saxon-HE (Home Edition). This container provides a simple command-line interface for processing XML documents with Saxon's powerful transformation capabilities."
+authors:
+  - family-names: "Reich"
+    given-names: "Silke"
+    orcid: "https://orcid.org/0009-0007-8817-0299"
+    email: "diginaut@protonmail.com"
+    affiliation: "Erich Wolfgang Korngold Werkausgabe"
+repository-code: "https://github.com/diginaut/saxon-cmd"
+url: "https://github.com/diginaut/saxon-cmd"
+version: 1.0.0
+date-released: 2025-01-09
+license: GPL-3.0-or-later
+keywords:
+  - "Saxon-HE"
+  - "XSLT"
+  - "XQuery"
+  - "XML"
+  - "Docker"
+  - "Command-line"
+  - "Digital Humanities"
+  - "XML Processing"
+  - "Data Transformation"
+references:
+  - type: software
+    title: "Saxon-HE"
+    authors:
+      - name: "Saxonica Limited"
+    url: "https://www.saxonica.com/"
+    abstract: "Saxon is an XSLT and XQuery processor."
+  - type: software
+    title: "Alpine Linux"
+    authors:
+      - name: "Alpine Linux Development Team"
+    url: "https://alpinelinux.org/"
+    abstract: "A security-oriented, lightweight Linux distribution based on musl libc and busybox."
