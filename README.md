@@ -1,5 +1,9 @@
 # Saxon CMD Docker Image
 
+[![Docker Hub](https://img.shields.io/docker/v/diginaut/saxon-cmd?label=Docker%20Hub)](https://hub.docker.com/r/diginaut/saxon-cmd)
+[![Docker Image Size](https://img.shields.io/docker/image-size/diginaut/saxon-cmd)](https://hub.docker.com/r/diginaut/saxon-cmd)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 A lightweight Docker image for executing XSLT transformations and XQuery scripts using Saxon-HE (Home Edition). This container provides a simple command-line interface for processing XML documents with Saxon's powerful transformation capabilities.
 
 ## Features
@@ -12,7 +16,21 @@ A lightweight Docker image for executing XSLT transformations and XQuery scripts
 
 ## Quick Start
 
-### Building the Image
+### Pre-built Docker Image (Recommended)
+
+The easiest way to use Saxon CMD is by pulling the pre-built image from Docker Hub:
+
+```bash
+# Pull the latest version
+docker pull diginaut/saxon-cmd:latest
+
+# Or pull a specific version
+docker pull diginaut/saxon-cmd:1.0.0
+```
+
+### Building the Image Locally
+
+Alternatively, you can build the image yourself:
 
 ```bash
 docker build -t saxon-cmd .
@@ -20,9 +38,25 @@ docker build -t saxon-cmd .
 
 ### Basic Usage
 
-#### XSLT Transformation
+#### Using Pre-built Image
 
+**XSLT Transformation:**
 Transform an XML document using an XSLT stylesheet:
+
+```bash
+docker run --rm -v /path/to/your/files:/app/input diginaut/saxon-cmd:latest xslt input.xml stylesheet.xsl
+```
+
+**XQuery Script:**
+Execute an XQuery script:
+
+```bash
+docker run --rm -v /path/to/your/files:/app/input diginaut/saxon-cmd:latest xquery query.xq
+```
+
+#### Using Locally Built Image
+
+**XSLT Transformation:**
 
 ```bash
 docker run --rm \
