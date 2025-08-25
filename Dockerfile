@@ -34,4 +34,4 @@ RUN echo '#!/bin/bash\njava -cp /opt/saxon/saxon-he-12.5.jar net.sf.saxon.Query 
     && chmod +x /usr/local/bin/xquery
 
 # Use the script as the entrypoint
-ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
+CMD ["/bin/bash"]
