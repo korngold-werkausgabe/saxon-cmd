@@ -26,11 +26,11 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Serve XSLT
-RUN echo '#!/bin/sh\njava -cp /opt/saxon/saxon-he-12.5.jar net.sf.saxon.Transform "$@"' > /usr/local/bin/xslt \
+RUN echo '#!/bin/bash\njava -cp /opt/saxon/saxon-he-12.5.jar net.sf.saxon.Transform "$@"' > /usr/local/bin/xslt \
     && chmod +x /usr/local/bin/xslt
 
 # Serve XQuery
-RUN echo '#!/bin/sh\njava -cp /opt/saxon/saxon-he-12.5.jar net.sf.saxon.Query "$@"' > /usr/local/bin/xquery \
+RUN echo '#!/bin/bash\njava -cp /opt/saxon/saxon-he-12.5.jar net.sf.saxon.Query "$@"' > /usr/local/bin/xquery \
     && chmod +x /usr/local/bin/xquery
 
 # Use the script as the entrypoint
