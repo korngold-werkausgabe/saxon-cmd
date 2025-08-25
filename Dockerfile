@@ -13,25 +13,14 @@ LABEL org.opencontainers.image.source="https://github.com/diginaut/saxon-cmd"
 LABEL org.opencontainers.image.url="https://github.com/diginaut/saxon-cmd"
 LABEL org.opencontainers.image.version=""
 
-RUN apk add --no-cache openjdk11 \
-    && apk add --no-cache unzip \
-    && apk add --no-cache bash
+RUN apk add --no-cache openjdk11 unzip bash
 
 ADD https://github.com/Saxonica/Saxon-HE/releases/download/SaxonHE12-5/SaxonHE12-5J.zip .
-RUN unzip SaxonHE12-5J.zip -d /opt/saxon 
-RUN rm SaxonHE12-5J.zip
+RUN unzip SaxonHE12-5J.zip -d /opt/saxon && rm SaxonHE12-5J.zip
 
-# Add a script to handle the mode logic
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+# Serve XSLT and XQuery in one RUN command
+RUN printf '#!/bin/sh\njava -cp /opt/saxon/saxon-he-12.5.jar net.sf.saxon.Transform "$@"\n' > /usr/local/bin/xslt && \
+    printf '#!/bin/sh\njava -cp /opt/saxon/saxon-he-12.5.jar net.sf.saxon.Query "$@"\n' > /usr/local/bin/xquery && \
+    chmod +x /usr/local/bin/xslt /usr/local/bin/xquery
 
-# Serve XSLT
-RUN echo '#!/bin/sh\njava -cp /opt/saxon/saxon-he-12.5.jar net.sf.saxon.Transform "$@"' > /usr/local/bin/xslt \
-    && chmod +x /usr/local/bin/xslt
-
-# Serve XQuery
-RUN echo '#!/bin/sh\njava -cp /opt/saxon/saxon-he-12.5.jar net.sf.saxon.Query "$@"' > /usr/local/bin/xquery \
-    && chmod +x /usr/local/bin/xquery
-
-# Use the script as the entrypoint
 CMD ["/bin/sh"]
